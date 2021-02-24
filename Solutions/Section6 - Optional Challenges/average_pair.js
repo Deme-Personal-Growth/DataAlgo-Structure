@@ -17,7 +17,7 @@ function averagePair(arr, avg){
   }
 
 
-  
+
   console.log(averagePair([1,2,3], 2.5))
   console.log(averagePair([1,3,3,5,6,7,10,12,19], 8))
   console.log(averagePair([-1, 0, 3, 4, 5,6], 4.1))
@@ -25,28 +25,14 @@ function averagePair(arr, avg){
 
   // add whatever parameters you deem necessary - good luck!
     /**
-     * 1. first if array is empty then null, undefinied, or false
+     * the arguments are an array and the avg which we will check against
      * 
-     * 2. Finding out the pair number is to the number you insert
-     * let num = arr[0]
-     * let complimentary_number = (avg * 2) - a
-     * 
-     * 3. Now we need to find out the max# in the array so:
-     * let max_num = arr[-1]
-     * 
-     * 4. We need a middle# to start checking eventually
-     * let middle = Math.floor((arr.length / 2)) 
-     * let current = arr[middle]
-     * 
-     * Now we can compare using a divide and conquer pattern
-     * 
-     * 5. if complimentary_number > max_num then there isn't an answer in the array
-     * 
-     * 6. if complimentary_number > current then
-     *          middle -= 1
-     *          current[middle]
-     * 
-     * 7. if complimentary_number < current then
-     *          middle += 1
-     *          current[middle]
+     * 1. we need a pointer for the element at the beginning of the array
+          and one for the end
+
+       2. Then so long a min is less then max we can build an if statement that checks:
+            a. if test_avg is less than avg : test the next element to the right of min
+            b. if test_avg is greater than avg : test the next element to the left of max
+            c. if test is equal to avg then we return false
+       3. If the none of the above was true it will exit and we will return false
      */
