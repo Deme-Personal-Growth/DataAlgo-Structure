@@ -9,7 +9,7 @@ class MaxBinaryHeap {
 
         while( this.values[childIndex] > this.gettingParentValue(childIndex) ) {
             const parentIndex = this.gettingParentIndex(childIndex)
-            this.swap(this.values[childIndex], this.values[parentIndex])
+            this.swap(childIndex, parentIndex)
 
             childIndex = parentIndex
         }
@@ -26,9 +26,47 @@ class MaxBinaryHeap {
     }
 
     swap = (a, b) => {
-        [a, b] = [b, a]
+        [this.values[a], this.values[b]] = [this.values[b], this.values[a]]
+    }
+
+    extractMax(){
+        const max = this.values[0]
+
+        this.swap(0, this.this.values.length - 1)
+        this.values.pop(0)
+
+        let parentIndex = 0
+        let leftChildIndex = 2 * parentIndex + 1
+        let rightChildIndex = 2 * parentIndex + 2
+        let parentVal = this.values[parentIndex]
+        let leftChildVal = this.values[leftChildIndex]
+        let rightChildVal = this.values[rightChildIndex]
+
+        while (leftChildIndex !== undefined) {
+            let maxChildIndex = leftChildIndex
+            let maxChildVal = this.values[maxChildIndex]
+
+            if ( rightChildInex !== undefined && rightChildVal > leftChildVal){
+                maxChildIndex = rightChildIndex
+                maxChildVal = rightChildVal
+            }
+
+            if (parentVal < maxChildVal){
+                this.swap(parentIndex, maxChildIndex)
+                parentIndex = maxChildIndex
+                leftChildIndex = 2 * parentIndex + 1
+                rightChildIndex = 2 * parentIndex + 2
+                parentVal = this.values[parentIndex]
+                leftChildVal = this.values[leftChildIndex]
+                rightChildVal = this.values[rightChildIndex]
+              } else {
+                break
+              }
+              
+        }
     }
 }
+
 
 const maxHeap = new MaxBinaryHeap()
 maxHeap.insert(10)
