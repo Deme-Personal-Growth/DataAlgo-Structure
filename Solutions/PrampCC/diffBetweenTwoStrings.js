@@ -14,6 +14,9 @@ function diffBetweenTwoStrings(source, target) {
      * 
      * Third Pointer (j) is checking target's  character
      * 
+     * 
+     * How about flip pointers? Focus on target instead of source
+     * 
      * If charAt(i) === charAt(j)
      *    then push char to string array
      *     i ++, ii++, j++
@@ -37,3 +40,8 @@ function diffBetweenTwoStrings(source, target) {
   return stringArray
 	// your code goes here
 }
+
+/*    ''
+    ''
+
+*/
