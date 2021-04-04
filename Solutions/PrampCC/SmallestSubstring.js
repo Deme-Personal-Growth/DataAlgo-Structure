@@ -11,21 +11,33 @@
 function getShortestUniqueSubstring(arr, str){
     const arrCounter = {}
     const strCounter = {}
-    let i, j = 0
-    let lowestPossibleCount = arr.length
+    let z = 0
+    let i = 0
+    let j = 1
     let currentCount = 0
-    let shortestSubstring = ""
 
     arr.forEach(ele => {
-        createObj(ele, arrCounter)
+        addToKey(ele, arrCounter)
     })
 
+    addToKey((str.charAt(i)), strCounter)
+    addToKey((str.charAt(j)), strCounter)
+    
+    while(z < str.length - 1){
+        console.log(arrCounter, strCounter)
 
-    while(i < str.length - 1){
-        if(str.charAt(i)){
-
+        if(!checkEntries(arrCounter, strCounter)){
+            j++
+            addToKey((str.charAt(j)), strCounter)
+        } else {
+            strCounter[str.charAt(i)] -= 1 
+            i++
+            currentCount = ((j - i) + 1)
         }
+        console.log(arrCounter, strCounter)
+        z++
     }
+    
     
     
 }
@@ -36,16 +48,26 @@ function getShortestUniqueSubstring(arr, str){
       z: 1
     }  
 
-    str
+    { x: 1,
+      y: 2,
+      z: 1,
+        
+    }
 */
 
 function checkEntries(obj1, obj2){
-        
+    for( let key in obj1){
+        if(!(obj2[key] >= obj1[key])){
+            return false
+        }
+    }
+    return true
 }
 
-function createObj(ele, Obj){
+function addToKey(ele, Obj){
     Obj[ele] = ( Obj[ele] || 0 ) + 1
 }
+
 
 /**
  * 1. Alright so my first thoughts are I'm using a freq counter, 2 pointers/sliding window
@@ -56,8 +78,8 @@ function createObj(ele, Obj){
 
 
 
-getShortestUniqueSubstring(["a", "b", "c"], "accbaabaccba")
-getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba")
-getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd")
+// getShortestUniqueSubstring(["a", "b", "c"], "accbaabaccba")
+// getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba")
+// getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd")
 getShortestUniqueSubstring([ "x", "y", "z"], "xyyzyzyx")
 
