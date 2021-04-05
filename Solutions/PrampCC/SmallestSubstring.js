@@ -15,23 +15,26 @@ function getShortestUniqueSubstring(arr, str){
     let j = 1
     let currentSubstring = ""
 
+    //Turn every element of the array into a freqCounter key and value pairs
     arr.forEach(ele => {
         addToKey(ele, arrCounter)
     })
 
+    //Since no matter what we are starting on the first 2 elements of the array,
+    //We just make the immediately to keys and values
     addToKey((str.charAt(i)), strCounter)
     addToKey((str.charAt(j)), strCounter)
     
+
+    //Loop through the whole string's letters to check and create a window of the string we're working with
     while(j <= str.length ){
-        console.log(strCounter)
         
         if(!checkEntries(arrCounter, strCounter)){
-            j++
-            addToKey((str.charAt(j)), strCounter)
+            j++                         
+            addToKey((str.charAt(j)), strCounter) //adds the key to the necessary key value pairs
         } else {
             currentSubstring = str.slice(i, (j+ 1)) 
-            strCounter[str.charAt(i)] -= 1
-            
+            strCounter[str.charAt(i)] -= 1 //as we move the window from the beginning we subtract key values accordingly
             i++
         }
     }
@@ -39,7 +42,7 @@ function getShortestUniqueSubstring(arr, str){
     return currentSubstring    
 }
 
-
+//helper function to check if the String Freq Counter's keys are corrsponding and are greater than those in the Array Freq Counter
 function checkEntries(obj1, obj2){
     for( let key in obj1){
         if(!(obj2[key] >= obj1[key])){
@@ -49,6 +52,7 @@ function checkEntries(obj1, obj2){
     return true
 }
 
+//helper function to add to the key so I don't write this too many times
 function addToKey(ele, Obj){
     Obj[ele] = ( Obj[ele] || 0 ) + 1
 }
