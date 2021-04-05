@@ -11,10 +11,9 @@
 function getShortestUniqueSubstring(arr, str){
     const arrCounter = {}
     const strCounter = {}
-    let z = 0
     let i = 0
     let j = 1
-    let currentCount = 0
+    let currentSubstring = ""
 
     arr.forEach(ele => {
         addToKey(ele, arrCounter)
@@ -23,37 +22,23 @@ function getShortestUniqueSubstring(arr, str){
     addToKey((str.charAt(i)), strCounter)
     addToKey((str.charAt(j)), strCounter)
     
-    while(z < str.length - 1){
-        console.log(arrCounter, strCounter)
-
+    while(j <= str.length ){
+        console.log(strCounter)
+        
         if(!checkEntries(arrCounter, strCounter)){
             j++
             addToKey((str.charAt(j)), strCounter)
         } else {
-            strCounter[str.charAt(i)] -= 1 
+            currentSubstring = str.slice(i, (j+ 1)) 
+            strCounter[str.charAt(i)] -= 1
+            
             i++
-            currentCount = ((j - i) + 1)
         }
-        console.log(arrCounter, strCounter)
-        z++
     }
-    
-    
-    
+
+    return currentSubstring    
 }
 
-/*
-    { x: 1,
-      y: 1,
-      z: 1
-    }  
-
-    { x: 1,
-      y: 2,
-      z: 1,
-        
-    }
-*/
 
 function checkEntries(obj1, obj2){
     for( let key in obj1){
@@ -78,8 +63,8 @@ function addToKey(ele, Obj){
 
 
 
-// getShortestUniqueSubstring(["a", "b", "c"], "accbaabaccba")
-// getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba")
-// getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd")
-getShortestUniqueSubstring([ "x", "y", "z"], "xyyzyzyx")
+console.log(getShortestUniqueSubstring(["a", "b", "c"], "accbaabaccba"))
+console.log(getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba"))
+console.log(getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd"))
+console.log(getShortestUniqueSubstring([ "x", "y", "z"], "xyyzyzyx"))
 
