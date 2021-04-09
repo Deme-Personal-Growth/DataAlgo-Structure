@@ -72,3 +72,17 @@ console.log(getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba"))
 console.log(getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd"))
 console.log(getShortestUniqueSubstring([ "x", "y", "z"], "xyyzyzyx"))
 
+
+
+
+
+
+/* array = ['x', 'y', 'z']  string = "xyyzyzyx"
+    Array Freq           String 
+    Counter              Traversing
+    { x: 1,                        i   j
+      y: 1,              x y y z y z y x
+      z: 1
+    }
+
+*/
