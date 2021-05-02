@@ -11,12 +11,20 @@
  */
 function minSubArrLen(arr, n){
     let currentMax = arr[0]
+    let count = 0
     let j = 1
 
     for(let i = 0; i < arr.length; i++){
-        if(arr[i] < n){
-            currentMax = arr[j]
+        if(currentMax < n){
+            currentMax += arr[j]
+            count ++
             j++
         }
+
+        if(currentMax > n){
+            return count
+        }
     }
+
+    return 0
 }
