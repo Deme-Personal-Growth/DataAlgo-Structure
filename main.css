@@ -1,0 +1,21 @@
+* { padding: 0; margin: 0;}
+div{height: 100px; width: 100px;}
+
+#red {
+    background-color: red;
+    z-index: 1;
+}
+
+#green{
+    background-color: green;
+    z-index: 0;
+    position: absolute;
+    top: 0;
+}
+
+#blue {
+    background-color: blue;
+    z-index: 2;
+    position: static;
+    top: 0;
+}
