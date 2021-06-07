@@ -220,7 +220,7 @@ const findMostRepeated2 = (array) => {
 }
 
 
-const findLongSeq= (array) => {
+const findLongSeq = (array) => {
 	const freqCounter = {}
 	let maxNum
 	let maxVal = 0

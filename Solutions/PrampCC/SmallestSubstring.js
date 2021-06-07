@@ -13,7 +13,7 @@ function getShortestUniqueSubstring(arr, str){
     const strCounter = {}
     let i = 0
     let j = 1
-    let currentSubstring = ""
+    let lowestSubstring = arr.join()
 
     //Turn every element of the array into a freqCounter key and value pairs
     arr.forEach(ele => {
@@ -28,18 +28,24 @@ function getShortestUniqueSubstring(arr, str){
 
     //Loop through the whole string's letters to check and create a window of the string we're working with
     while(j <= str.length ){
+        let currentSubstring = ""
         
         if(!checkEntries(arrCounter, strCounter)){
             j++                         
             addToKey((str.charAt(j)), strCounter) //adds the key to the necessary key value pairs
         } else {
-            currentSubstring = str.slice(i, (j+ 1)) 
+            currentSubstring = str.slice(i, (j+ 1))
             strCounter[str.charAt(i)] -= 1 //as we move the window from the beginning we subtract key values accordingly
+            if(Math.min(currentSubstring.length, lowestSubstring.length) === currentSubstring){
+                lowestSubstring = currentSubstring
+            }
             i++
         }
+
+
     }
 
-    return currentSubstring    
+    return lowestSubstring  
 }
 
 //helper function to check if the String Freq Counter's keys are corrsponding and are greater than those in the Array Freq Counter
@@ -72,7 +78,53 @@ console.log(getShortestUniqueSubstring(["a", "b", "c", "d"], "accbaabaccba"))
 console.log(getShortestUniqueSubstring([ "c", "d", "b"], "bccbccccbbbdd"))
 console.log(getShortestUniqueSubstring([ "x", "y", "z"], "xyyzyzyx"))
 
-
+function minWindow(str, targets) {
+    let counts = {};
+    let missing = targets.length;
+    let range = [0,Infinity];
+    
+    for (let i = 0; i < targets.length; i++) {
+      counts[targets[i]] = 0
+    }
+    
+    let left = 0;
+    for (let right = 0; right < str.length; right++) {
+      if (str[right] in counts) {
+        counts[str[right]]++;
+        if(counts[str[right]] === 1) {
+          missing--;
+        }
+      } 
+      
+      while (missing === 0) {
+        
+        if((right - left) < (range[1] - range[0])) {
+          range = [left, right]
+        }
+        range = [left, right]
+        
+        if(str[left] in counts) {
+          counts[str[left]]--;
+          if (counts[str[left]] === 0) {
+            missing++
+          }
+        }
+        left++;
+      }
+  
+    }
+    
+    console.log("COUNTS", counts);
+    console.log("MISSING", missing);
+    console.log("RANGE", range);
+    
+    if(range[1] === Infinity) {
+      return "";
+    } else {
+      return str.slice(range[0], range[1] + 1);
+    }
+  
+  }
 
 
 
