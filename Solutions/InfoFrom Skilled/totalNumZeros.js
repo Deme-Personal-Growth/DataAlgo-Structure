@@ -1,10 +1,13 @@
 // 4- Count Total number of zeros from 1 upto n
 // 	countZero(2014) = 223
 // 	countZero(100) = 11
+let count = 0
+const objN = {}
 
 const totalZeros = (n) => {
-    let count = 0
-    const objN = {}
+    let i = 1
+
+  
     
     if (n === 1) return 0
     if (objN[n]) return objN[n]
